@@ -11,27 +11,53 @@ function computerPlay(computerChoice) {
     } 
 }
 
+let playerPoints = 0;
+let computerPoints = 0;
+
 function singleRound(playerSelection, computerSelection) {
     playerSelection = prompt("What do you choose? Rock, Paper or Scissors?");
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerPlay();
 
     if (playerSelection === computerSelection) {
-        return result = "It is a tie!";
+        console.log("It is a tie!");
+        return computerPoints;
     } else if ((playerSelection === "rock") && (computerSelection === "paper")) {
-        return result = "You chose rock and computer chose paper, so you lost!";
+        console.log("You chose rock and computer chose paper, so you lost!");
+        return computerPoints += 1;
     } else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
-        return result = "Congratulations! You chose rock and computer chose scissors, so you won!";
+        console.log("Congratulations! You chose rock and computer chose scissors, so you won!");
+        return playerPoints += 1;
     } else if ((playerSelection === "paper") && (computerSelection === "rock")) {
-        return result = "Congratulations! You chose paper and computer chose rock, so you won!";
+        console.log("Congratulations! You chose paper and computer chose rock, so you won!");
+        return playerPoints += 1;
     } else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
-        return result = "You chose paper and computer chose scissors, so you lost!";
+        console.log("You chose paper and computer chose scissors, so you lost!");
+        return computerPoints += 1;
     } else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
-        return result = "You chose scissors and computer chose rock, so you lost!";
+        console.log("You chose scissors and computer chose rock, so you lost!");
+        return computerPoints += 1;
     } else {
-        return result = "Congratulations! You chose scissors and computer chose paper, so you won!";
+        console.log("Congratulations! You chose scissors and computer chose paper, so you won!");
+        return playerPoints += 1;
     }
     
 }
 
+
+function game(points) {
+    singleRound();
+    singleRound();
+    singleRound();
+    singleRound();
+    singleRound();
+
+    if (playerPoints === computerPoints) {
+        return console.log("It is a tie! You won: " + playerPoints + ". Computer won: " + computerPoints);
+    } else if (playerPoints > computerPoints) {
+        return console.log("Congratulations! You won: " + playerPoints + ". Computer won: " + computerPoints);
+    } else {
+        return console.log("Unfortunately, you won: " + playerPoints + ". Computer won: " + computerPoints);
+    }
+}
 
