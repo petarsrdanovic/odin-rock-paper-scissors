@@ -1,12 +1,16 @@
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function computerPlay(computerChoice) {
 
-    randomValue = Math.floor((Math.random() * 10));
+    randomValue = randomInt(1, 3);
 
-    if ((randomValue >= 0) && (randomValue < 4)) {
+    if (randomValue === 1) {
         return computerChoice = "rock";
-    } else if ((randomValue >= 4) && (randomValue < 7)) {
+    } else if (randomValue === 2) {
         return computerChoice = "paper";
-    } else if (randomValue > 6) {
+    } else if (randomValue === 3) {
         return computerChoice = "scissors";
     } 
 }
@@ -45,7 +49,7 @@ function singleRound(playerSelection, computerSelection) {
 }
 
 
-function game(points) {
+function game(results) {
     singleRound();
     singleRound();
     singleRound();
@@ -53,11 +57,11 @@ function game(points) {
     singleRound();
 
     if (playerPoints === computerPoints) {
-        return console.log("It is a tie! You won: " + playerPoints + ". Computer won: " + computerPoints);
+        return results = console.log("It is a tie! You won: " + playerPoints + ". Computer won: " + computerPoints);
     } else if (playerPoints > computerPoints) {
-        return console.log("Congratulations! You won: " + playerPoints + ". Computer won: " + computerPoints);
+        return results = console.log("Congratulations! You won: " + playerPoints + ". Computer won: " + computerPoints);
     } else {
-        return console.log("Unfortunately, you won: " + playerPoints + ". Computer won: " + computerPoints);
+        return results = console.log("Unfortunately, you won: " + playerPoints + ". Computer won: " + computerPoints);
     }
 }
 
