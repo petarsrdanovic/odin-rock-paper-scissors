@@ -23,55 +23,102 @@ function computerPlay(computerChoice) {
 let playerPoints = 0;
 let computerPoints = 0;
 
+const resultDisplay = document.querySelector("div");
+const player = document.querySelector("#player");
+const computer = document.querySelector("#computer");
+const winner = document.querySelector("#winner");
+
+
 // A single round of the game. Depending on the result, one of the messages is displayed and either 
 // the player or the computer gets a point (unles it's a tie). 
 
 function singleRound(playerSelection, computerSelection) {
-    playerSelection = prompt("What do you choose? Rock, Paper or Scissors?");
-    playerSelection = playerSelection.toLowerCase();
+
     computerSelection = computerPlay();
 
+    if (playerPoints === 5 || computerPoints === 5) {
+        if (playerPoints === 5) {
+            return winner.textContent = "Human has won!";
+        } else {
+            return winner.textContent = "Computer has won!";
+        }
+    }
+
     if (playerSelection === computerSelection) {
-        console.log("It is a tie!");
-        return computerPoints;
+        return resultDisplay.textContent = "It is a tie!";
     } else if ((playerSelection === "rock") && (computerSelection === "paper")) {
-        console.log("You chose rock and computer chose paper, so you lost!");
-        return computerPoints += 1;
+        computerPoints += 1;
+        computer.textContent = "Computer points: " + computerPoints;
+        return resultDisplay.textContent = "You chose rock and computer chose paper, so you lost!";
     } else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
-        console.log("Congratulations! You chose rock and computer chose scissors, so you won!");
-        return playerPoints += 1;
+        playerPoints += 1;
+        player.textContent = "Player points: " + playerPoints;
+        return resultDisplay.textContent = "Congratulations! You chose rock and computer chose scissors, so you won!";        
     } else if ((playerSelection === "paper") && (computerSelection === "rock")) {
-        console.log("Congratulations! You chose paper and computer chose rock, so you won!");
-        return playerPoints += 1;
+        playerPoints += 1;
+        player.textContent = "Player points: " + playerPoints;
+        return resultDisplay.textContent = "Congratulations! You chose paper and computer chose rock, so you won!";
     } else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
-        console.log("You chose paper and computer chose scissors, so you lost!");
-        return computerPoints += 1;
+        computerPoints += 1;
+        computer.textContent = "Computer points: " + computerPoints;
+        return resultDisplay.textContent = "You chose paper and computer chose scissors, so you lost!";  
     } else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
-        console.log("You chose scissors and computer chose rock, so you lost!");
-        return computerPoints += 1;
+        computerPoints += 1;
+        computer.textContent = "Computer points: " + computerPoints;
+        return resultDisplay.textContent = "You chose scissors and computer chose rock, so you lost!"; 
     } else {
-        console.log("Congratulations! You chose scissors and computer chose paper, so you won!");
-        return playerPoints += 1;
+        playerPoints += 1;
+        player.textContent = "Player points: " + playerPoints;
+        return resultDisplay.textContent = "Congratulations! You chose scissors and computer chose paper, so you won!";
     }
     
 }
 
+// Playing singleRound() with all three possible player's choices in order to make adding event 
+// listener to buttons more straightforward.
+
+function rocking() {
+    singleRound("rock");
+}
+
+function scissoring() {
+    singleRound("scissors");
+}
+
+function papering() {
+    singleRound("paper");
+}
+
+// Linking possible player's choices to the buttons and playing rounds when buttons are clicked.
+
+const playerRock = document.querySelector('#rock');
+playerRock.addEventListener("click", rocking);
+
+const playerPaper = document.querySelector("#paper");
+playerPaper.addEventListener("click", papering);
+
+const playerScissors = document.querySelector("#scissors");
+playerScissors.addEventListener("click", scissoring);
+
+
+
+
 // The actual game. Single round is played five times, points are calculated and the final message
 // is displayed telling the user who won.
 
-function game(results) {
-    singleRound();
-    singleRound();
-    singleRound();
-    singleRound();
-    singleRound();
+//function game(results) {
+    //singleRound();
+    //singleRound();
+    //singleRound();
+    //singleRound();
+    //singleRound();
 
-    if (playerPoints === computerPoints) {
-        return results = console.log("It is a tie! You won: " + playerPoints + ". Computer won: " + computerPoints);
-    } else if (playerPoints > computerPoints) {
-        return results = console.log("Congratulations! You won: " + playerPoints + ". Computer won: " + computerPoints);
-    } else {
-        return results = console.log("Unfortunately, you won: " + playerPoints + ". Computer won: " + computerPoints);
-    }
-}
+    //if (playerPoints === computerPoints) {
+        //return results = console.log("It is a tie! You won: " + playerPoints + ". Computer won: " + computerPoints);
+    //} else if (playerPoints > computerPoints) {
+        //return results = console.log("Congratulations! You won: " + playerPoints + ". Computer won: " + computerPoints);
+    //} else {
+        //return results = console.log("Unfortunately, you won: " + playerPoints + ". Computer won: " + computerPoints);
+    //}
+//}
 
